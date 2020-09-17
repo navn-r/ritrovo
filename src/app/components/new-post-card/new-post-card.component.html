@@ -1,0 +1,33 @@
+<div class="new-post card shadow p-3">
+  <div class="card-body text-white">
+    <h5 class="card-title">{{infoTitle}}</h5>
+    <h6 class="card-subtitle text-muted">
+      {{infoSubtitle}}
+    </h6>
+    <div class="mt-3">
+        <label for="post-title">Title</label>
+        <div class="input-group mb-3">
+            <input [(ngModel)]="title" type="text" id="post-title" class="form-control" placeholder="ex. Some food for thought">
+        </div>
+        <label for="post-body">Body (Markdown supported)</label>
+        <textarea [(ngModel)]="body" class="form-control" id="post-body" placeholder="ex. During a nuclear explosion, there is a certain distance of the radius where all the frozen supermarket pizzas are cooked to perfection."></textarea>
+    </div>
+    <div class="post-buttons">
+        <button class="btn btn-outline-warning" (click)="onSubmit()" [disabled]="!this.title || !this.body">SUBMIT</button>
+        <button class="btn btn-outline-info mr-4" [disabled]="!this.title || !this.body" (click)="onPreviewClick(content)">PREVIEW POST</button>
+        <button *ngIf="this.post" class="btn btn-danger mr-4" (click)="onCancelEdit()">CANCEL EDIT</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Post Preview</h4>
+    </div>
+    <div class="modal-body">
+      <app-post-card [post]="previewPost"></app-post-card>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+  </div>
+</ng-template>

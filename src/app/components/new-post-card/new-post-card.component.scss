@@ -1,0 +1,25 @@
+@import "../../../variables.scss";
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.new-post {
+  background-color: $accent;
+  width: 80%;
+}
+
+.post-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 2rem;
+}
+
+#preview-btn {
+  margin-right: 2rem;
+}
+
+#post-body {
+  min-height: 10rem;
+}

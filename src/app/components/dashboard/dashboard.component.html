@@ -1,0 +1,29 @@
+<div class="jumbotron jumbotron-fluid bg-secondary">
+  <div class="container">
+    <h1 class="display-4 title text-white">Dashboard</h1>
+    <p class="lead text-light">Browse responsibly. What you are about to see, will shock you.</p>
+  </div>
+</div>
+<div class="wrapper">
+<div id="left-content">
+  <div class="topper"></div>
+  <app-new-post-card [post]="post" [user]="user" (postEvent)="newPostHandler($event)"></app-new-post-card>
+</div>
+<div id="content">
+  <div *ngIf="posts && posts.length; else loading">
+    <app-post-card *ngFor="let post of posts" [post]="post" [user]="user" (editPostEvent)="editPostHandler($event)" (deletePostEvent)="deletePostHander($event)"></app-post-card>
+  </div>
+  <ng-template #loading>
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border m-5 text-warning" style="width: 5rem; height: 5rem;" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+  <div class="spacer"></div>
+</div>
+<div id="right-content">
+  <div class="topper"></div>
+  <app-user-details [user]="user" [numPosts]="getNumPosts()"></app-user-details>
+</div>
+</div>
