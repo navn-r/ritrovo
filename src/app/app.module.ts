@@ -12,9 +12,13 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { PostCardComponent } from './components/post-card/post-card.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { NewPostCardComponent } from './components/new-post-card/new-post-card.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent, PostCardComponent, UserDetailsComponent, SearchBarComponent, NewPostCardComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FontAwesomeModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

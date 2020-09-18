@@ -9,6 +9,13 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
+  // dummy user
+  user = {
+    username: "navn",
+    password: "1234",
+    email: String
+  };
+
   ngOnInit(): void {
   }
 
