@@ -23,8 +23,7 @@ const userSchema = new Schema({
     required: "email is required",
     unique: "email already registered",
     match: [/.+\@.+\..+/, "Valid email required"],
-  },
-  bio: String
+  }
 }, {
     timestamps: true
 });

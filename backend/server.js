@@ -11,7 +11,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const userRouter = require('./routes/user');
-const postRouter = require('./routes/postRouter');
+const postRouter = require('./routes/post');
 
 // dotenv to load .env files
 require("dotenv").config();
@@ -38,15 +38,24 @@ connection.once("open", () => console.log(`MongoDB now connected`));
 
 // use routes in app
 app.use('/api/posts', postRouter);
-app.use('/api/users', usersRouter);
+app.use('/api/users', userRouter);
 
 // server connects to port and is now listening
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// Test script to see if database get's updated
 /*
 
 const User = require("./models/user.model");
+const Post = require('./models/post.model');
+
+const testPost = new Post({
+  title: "How to make a full-stack app with MEAN",
+  author: "5f650d014c940b5ab560f43b",
+  body: "ok so basically keep watching tutorials till ur braindead then just copy someone elses stuff",
+  private: false
+});
+
+testPost.save().then(post => console.log(post));
 
 const testUser = new User({
   username: "navn",
@@ -72,4 +81,6 @@ testUser.save((err) => {
       });
     }
   );
-}); */
+}); 
+
+*/

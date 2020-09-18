@@ -14,8 +14,7 @@ const postSchema = new Schema({
     type: String,
     required: "post body is required",
   },
-  date: { type: Date, default: Date.now },
-  private: Boolean,
+  date: { type: Date, default: Date.now }
 });
 
 const Post = model('Post', postSchema);
