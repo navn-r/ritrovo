@@ -22,7 +22,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">@</span>
         </div>
-        <input type="text" class="form-control" placeholder="username" />
+        <input type="text" name="username" class="form-control" placeholder="username" [(ngModel)]="this.username"/>
       </div>
       <div class="input-group mb-3" *ngIf="!isLogin">
         <div class="input-group-prepend">
@@ -30,7 +30,7 @@
             ><fa-icon icon="paper-plane"></fa-icon
           ></span>
         </div>
-        <input type="text" class="form-control" placeholder="email" />
+        <input type="email" name="email" id="email" class="form-control" placeholder="email" [(ngModel)]="this.email"/>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -38,7 +38,7 @@
             ><fa-icon icon="key"></fa-icon
           ></span>
         </div>
-        <input type="password" class="form-control" placeholder="password" />
+        <input type="password" class="form-control" placeholder="password" [(ngModel)]="this.password"/>
       </div>
     </div>
     <div class="buttons" *ngIf="isLogin; else registerbutton">

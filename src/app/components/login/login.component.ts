@@ -9,6 +9,10 @@ export class LoginComponent implements OnInit {
 
   isLogin: boolean = true;
 
+  username: string = "";
+  password: string = "";
+  email: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
