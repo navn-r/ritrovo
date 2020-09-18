@@ -1,4 +1,11 @@
 # Ritrovo
+> At least it's not a to-do app.  
+
+Ritrovo, meaning 'Meeting Place' in Italian, is a MEAN stack social platform, *basically a facebook clone*.   
+
+**_Work In Progress_**
+
+-------------------------------------------------------------------------------------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.
 

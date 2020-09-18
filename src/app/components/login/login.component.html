@@ -1,0 +1,54 @@
+<div class="card login-card">
+    <img [src]="isLogin ? 'https://media3.giphy.com/media/icUEIrjnUuFCWDxFpU/giphy.gif' : 'https://media4.giphy.com/media/Y3e3gnofVUd4RnXKDz/giphy.gif?cid=ecf05e47881b9d42cfee10dcd2fe95128134ed27da8d668e&rid=giphy.gif'" class="card-img-top" alt="">
+  <div class="card-body">
+      <div *ngIf="isLogin; else register">
+          <h5 class="card-title text-white" >
+            Long time no see! <fa-icon [icon]="['far', 'hand-peace']"></fa-icon>
+          </h5>
+          <h6 class="card-subtitle text-muted">
+            We promise we won't steal your information, yet.
+          </h6>
+      </div>
+    <ng-template #register>
+        <h5 class="card-title text-white" >
+            Howdy! <fa-icon [icon]="['fas', 'grin-hearts']"></fa-icon>
+          </h5>
+          <h6 class="card-subtitle text-muted">
+            You ain't from around these parts, are you?
+          </h6>
+    </ng-template>
+    <div id="input">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input type="text" class="form-control" placeholder="username" />
+      </div>
+      <div class="input-group mb-3" *ngIf="!isLogin">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"
+            ><fa-icon icon="paper-plane"></fa-icon
+          ></span>
+        </div>
+        <input type="text" class="form-control" placeholder="email" />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"
+            ><fa-icon icon="key"></fa-icon
+          ></span>
+        </div>
+        <input type="password" class="form-control" placeholder="password" />
+      </div>
+    </div>
+    <div class="buttons" *ngIf="isLogin; else registerbutton">
+        <button class="btn btn-outline-success">LOGIN</button><button class="btn btn-outline-secondary" (click)="toggleIsLogin()">SIGN UP</button>
+    </div>
+    <ng-template #registerbutton>
+        <div class="buttons">
+            <button class="btn btn-outline-primary" (click)="toggleIsLogin()">BACK</button>
+            <button class="btn btn-outline-warning">REGISTER</button>
+        </div>
+    </ng-template>
+  </div>
+</div>
