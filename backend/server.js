@@ -37,8 +37,8 @@ const connection = mongoose.connection; // mongoose connection const to mongoDB
 connection.once("open", () => console.log(`MongoDB now connected`));
 
 // use routes in app
-app.use('/api/posts', postRouter);
-app.use('/api/users', userRouter);
+app.use('/posts', postRouter);
+app.use('/users', userRouter);
 
 // server connects to port and is now listening
 app.listen(port, () => console.log(`Listening on port ${port}`));
