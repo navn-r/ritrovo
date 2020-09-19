@@ -18,7 +18,7 @@ router.route('/user/:username').get((req, res) => {
       .then(user => {
           if(!user) return res.json(`username=${req.params.username} not found`);
           Post.find().then(posts => {
-              res.json(posts.filter(post => post.author.toString() === user.id.toString()));
+              res.json(posts.filter(post => post.author === user.username));
           }).catch(err => res.status(400).json(`Error: ${err}`));
       })
       .catch((err) => res.status(400).json(`Error: ${err}`));
@@ -59,7 +59,7 @@ router.route('/user/:username').delete((req, res) => {
         if(!user) return res.json(`username=${req.params.username} not found`);
         Post.find()
           .then(posts => {
-              let userPosts = posts.filter(post => post.author.toString() === user.id.toString());
+              let userPosts = posts.filter(post => post.author === user.username);
               userPosts.forEach(post => Post.findByIdAndDelete(post.id).then(() => console.log('deleted')));
               res.json(`[${req.params.username}] deleted all posts`);
           }).catch((err) => res.json(err));

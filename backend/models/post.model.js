@@ -7,8 +7,8 @@ const postSchema = new Schema({
     required: "title is required",
   },
   author: {
-    type: Schema.Types.ObjectId,
-    required: true
+    type: String,
+    required: "author is required",
   },
   body: {
     type: String,

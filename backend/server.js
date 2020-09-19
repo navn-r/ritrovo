@@ -50,7 +50,7 @@ const Post = require('./models/post.model');
 
 const testPost = new Post({
   title: "How to make a full-stack app with MEAN",
-  author: "5f650d014c940b5ab560f43b",
+  author: "navn",
   body: "ok so basically keep watching tutorials till ur braindead then just copy someone elses stuff",
   private: false
 });
