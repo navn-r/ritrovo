@@ -41,46 +41,13 @@ app.use('/posts', postRouter);
 app.use('/users', userRouter);
 
 // server connects to port and is now listening
+
+const path = require('path');
+app.use(express.static("../dist/ritrovo"));
+app.get('*', (req, res) => {
+  res.send("../dist/ritrovo/index.html");
+});
+
+
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
-/*
-
-const User = require("./models/user.model");
-const Post = require('./models/post.model');
-
-const testPost = new Post({
-  title: "How to make a full-stack app with MEAN",
-  author: "navn",
-  body: "ok so basically keep watching tutorials till ur braindead then just copy someone elses stuff",
-  private: false
-});
-
-testPost.save().then(post => console.log(post));
-
-const testUser = new User({
-  username: "navn",
-  email: "n@example.com",
-  password: "Naxter#123",
-});
-
-testUser.save((err) => {
-  if (err) throw err;
-  User.findOne(
-    {
-      username: "navn",
-    },
-    (err, user) => {
-      if (err) throw err;
-      user.comparePassword("dummy", (err, isMatch) => {
-        if (err) throw err;
-        console.log(`dummy ? ${isMatch}`);
-      });
-      user.comparePassword("Naxter#123", (err, isMatch) => {
-        if (err) throw err;
-        console.log(`Naxter#123 ? ${isMatch}`);
-      });
-    }
-  );
-}); 
-
-*/

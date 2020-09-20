@@ -15,7 +15,7 @@ export class PostService {
     GET all users
   */
   getAllPosts(): Observable<any> {
-    return this.http.get('posts');
+    return this.http.get('/posts');
   }
 
   /* 
@@ -23,7 +23,7 @@ export class PostService {
       - id: the id of the post
   */
   getPostById(id: string): Observable<any> {
-    return this.http.get(`posts/${id}`);
+    return this.http.get(`/posts/${id}`);
   }
 
   /* 
@@ -31,7 +31,7 @@ export class PostService {
       - username: the username of the author
   */
   getPostsByUsername(username: string): Observable<any> {
-    return this.http.get(`posts/user/${username}`);
+    return this.http.get(`/posts/user/${username}`);
   }
 
   /* 
@@ -40,7 +40,7 @@ export class PostService {
   */
   postNewPost(post: Post): Observable<any> {
     const { title, author, body } = post;
-    return this.http.post(`posts`, {
+    return this.http.post(`/posts`, {
       title,
       author,
       body,
@@ -53,7 +53,7 @@ export class PostService {
   */
   postUpdatePost(post: Post): Observable<any> {
     const { _id, title, body } = post;
-    return this.http.post(`posts/${_id}`, {
+    return this.http.post(`/posts/${_id}`, {
       title,
       body,
     });
@@ -64,7 +64,7 @@ export class PostService {
       - id: the id of the about-to-be deleted post
   */
   deletePostById(id: string): Observable<any> {
-    return this.http.delete(`posts/${id}`);
+    return this.http.delete(`/posts/${id}`);
   }
 
   /* 
@@ -72,6 +72,6 @@ export class PostService {
       - username: the author of the posts that need to be deleted
   */
   deletePostByUsername(username: string): Observable<any> {
-    return this.http.delete(`posts/user/${username}`);
+    return this.http.delete(`/posts/user/${username}`);
   }
 }

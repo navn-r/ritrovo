@@ -32,7 +32,7 @@ export class UserService {
     GET all users
   */
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>('users');
+    return this.http.get<User[]>('/users');
   }
 
   /* 
@@ -40,7 +40,7 @@ export class UserService {
       - username: the username of the user
   */
   getUser(username: string, password: string): Observable<User | boolean> {
-    return this.http.post<User | boolean>(`users/${username}`, {
+    return this.http.post<User | boolean>(`/users/${username}`, {
       username,
       password,
     });
@@ -52,7 +52,7 @@ export class UserService {
   */
   postNewUser(newUser): Observable<any> {
     const { username, password, email } = newUser;
-    return this.http.post('users', {
+    return this.http.post('/users', {
       username,
       password,
       email,
@@ -65,7 +65,7 @@ export class UserService {
   */
   postUpdatePassword(user: User): Observable<any> {
     const { username, password } = user;
-    return this.http.post(`users/password/${username}`, {
+    return this.http.post(`/users/password/${username}`, {
       password,
     });
   }
@@ -76,7 +76,7 @@ export class UserService {
   */
   postUpdateEmail(user: User): Observable<any> {
     const { username, email } = user;
-    return this.http.post(`users/email/${username}`, {
+    return this.http.post(`/users/email/${username}`, {
       email,
     });
   }
@@ -86,6 +86,6 @@ export class UserService {
       - username: the username of the about-to-be deleted user
   */
   deleteUser(username: string): Observable<any> {
-    return this.http.delete(`users/${username}`);
+    return this.http.delete(`/users/${username}`);
   }
 }
