@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -8,7 +10,7 @@ import { User } from 'src/app/models/user';
 })
 export class UserDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   @Input()
   user: User;
@@ -17,6 +19,11 @@ export class UserDetailsComponent implements OnInit {
   numPosts: number;
 
   ngOnInit(): void {
+  }
+
+  logOutHandler(): void {
+    this.userService.setUser(null);
+    this.router.navigate(['login']);
   }
 
 }

@@ -12,20 +12,39 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   /* 
-    GET all users
-    TODO: fix link before deployment
+    Current User
+      - Uses local storage for persistence
   */
-  getAllUsers(): Observable<any> {
-    return this.http.get('http://localhost:5000/users');
+  user: User = JSON.parse(localStorage.getItem('user') || null);
+
+  // Sets the user
+  setUser(user: User): void {
+    this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  // gets the user
+  getCurrentUser(): User {
+    return this.user;
   }
 
   /* 
     GET all users
+    TODO: fix link before deployment
+  */
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:5000/users');
+  }
+
+  /* 
+    POST login user by username (used for login auth)
       - username: the username of the user
     TODO: fix link before deployment
   */
-  getUser(username: string): Observable<any> {
-    return this.http.get(`http://localhost:5000/users/${username}`);
+  getUser(username: string, password: string): Observable<User | boolean> {
+    return this.http.post<User | boolean>(`http://localhost:5000/users/${username}`, {
+      username, password
+    });
   }
 
   /* 
@@ -33,7 +52,7 @@ export class UserService {
       - newUser: the about-to-be created user
     TODO: fix link before deployment
   */
-  postNewUser(newUser: User): Observable<any> {
+  postNewUser(newUser): Observable<any> {
     const { username, password, email } = newUser;
     return this.http.post('http://localhost:5000/users', {
       username,

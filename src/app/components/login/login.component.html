@@ -17,6 +17,11 @@
             You ain't from around these parts, are you?
           </h6>
     </ng-template>
+    <div class="error-msg" *ngIf="this.errorMessage">
+      <ngb-alert type="warning" (close)="this.errorMessage = ''">
+        <fa-icon [icon]="['far', 'surprise']"></fa-icon> {{errorMessage}}
+      </ngb-alert>
+    </div>
     <div id="input">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -42,12 +47,12 @@
       </div>
     </div>
     <div class="buttons" *ngIf="isLogin; else registerbutton">
-        <button class="btn btn-outline-success">LOGIN</button><button class="btn btn-outline-secondary" (click)="toggleIsLogin()">SIGN UP</button>
+        <button class="btn btn-outline-success" [disabled]="checkDetails()" (click)="loginHandler()">LOGIN</button><button class="btn btn-outline-secondary" (click)="toggleIsLogin()">SIGN UP</button>
     </div>
     <ng-template #registerbutton>
         <div class="buttons">
             <button class="btn btn-outline-primary" (click)="toggleIsLogin()">BACK</button>
-            <button class="btn btn-outline-warning">REGISTER</button>
+            <button class="btn btn-outline-warning" [disabled]="checkDetails()" (click)="registerHandler()">REGISTER</button>
         </div>
     </ng-template>
   </div>

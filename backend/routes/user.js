@@ -6,11 +6,18 @@ router.route('/').get((req, res) => {
     User.find().then(users => res.json(users)).catch(err => res.status(400).json(`Error: ${err}`));
 });
 
-// GET one user by username
-router.route('/:username').get((req, res) => {
+// GET one user by username (used for login auth)
+router.route('/:username').post((req, res) => {
+    const {password} = req.body;
     User.findOne({
         username: req.params.username,
-      }).then((user) => res.json(user)).catch((err) => res.status(400).json(`Error: ${err}`));
+      }).then((user) => {
+          user.comparePassword(password, function(err, isMatch) {
+              if(err)
+                return res.status(400).json(`${err}`);
+              return res.json(isMatch ? user : isMatch);
+          });
+      }).catch((err) => res.status(400).json(`Error: ${req.params.username} not found`));
 });
 
 
@@ -20,7 +27,7 @@ router.route('/').post((req, res) => {
     const newUser = new User({
         username, password, email
     });
-    newUser.save().then(() => res.json(`${username} successfully added`)).catch(err => res.json(err));
+    newUser.save().then(() => res.json(`${username} successfully added`)).catch(err => res.status(400).json(err));
 });
 
 // POST update password

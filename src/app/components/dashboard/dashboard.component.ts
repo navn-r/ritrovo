@@ -1,36 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private userService: UserService) {}
 
   posts: Post[];
-  users: User[];
 
-  // dummy user
-  user: User = {
-    _id: '5f650d014c940b5ab560f43b',
-    username: 'navn',
-    email: 'me@navn.me',
-    password: '$2b$10$/xLd.u0ntB1Dpm7UryHLTOcyvIU6VmzzFQfPFbypZdH72qzsNCXn6',
-    createdAt: new Date('2020-09-18T19:39:45.292Z'),
-    updatedAt: new Date('2020-09-19T16:00:12.291Z'),
-  };
+  user: User;
 
   post: Post;
 
   ngOnInit(): void {
+    this.user = this.userService.getCurrentUser();
     this.getAllPosts();
   }
 
   getNumPosts(): number {
-    return this.posts.filter(post => post.author === this.user.username).length;
+    if(this.posts)
+      return this.posts.filter(post => post.author === this.user.username).length;
+    else 
+      return 0;
   }
 
   editPostHandler($event: Post): void {

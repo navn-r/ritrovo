@@ -10,7 +10,7 @@
   <app-new-post-card [post]="post" [user]="user" (postEvent)="newPostHandler($event)"></app-new-post-card>
 </div>
 <div id="content">
-  <div *ngIf="posts.length; else loading">
+  <div *ngIf="posts && posts.length; else loading">
     <app-post-card *ngFor="let post of posts" [post]="post" [user]="user" (editPostEvent)="editPostHandler($event)" (deletePostEvent)="deletePostHander($event)"></app-post-card>
   </div>
   <ng-template #loading>
