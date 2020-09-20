@@ -30,31 +30,29 @@ export class UserService {
 
   /* 
     GET all users
-    TODO: fix link before deployment
   */
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:5000/users');
+    return this.http.get<User[]>('users');
   }
 
   /* 
     POST login user by username (used for login auth)
       - username: the username of the user
-    TODO: fix link before deployment
   */
   getUser(username: string, password: string): Observable<User | boolean> {
-    return this.http.post<User | boolean>(`http://localhost:5000/users/${username}`, {
-      username, password
+    return this.http.post<User | boolean>(`users/${username}`, {
+      username,
+      password,
     });
   }
 
   /* 
     POST new user
       - newUser: the about-to-be created user
-    TODO: fix link before deployment
   */
   postNewUser(newUser): Observable<any> {
     const { username, password, email } = newUser;
-    return this.http.post('http://localhost:5000/users', {
+    return this.http.post('users', {
       username,
       password,
       email,
@@ -64,11 +62,10 @@ export class UserService {
   /* 
     POST update password
       - user: the user whose password needs to be changed
-    TODO: fix link before deployment
   */
   postUpdatePassword(user: User): Observable<any> {
     const { username, password } = user;
-    return this.http.post(`http://localhost:5000/users/password/${username}`, {
+    return this.http.post(`users/password/${username}`, {
       password,
     });
   }
@@ -76,11 +73,10 @@ export class UserService {
   /* 
     POST update email
       - user: the user whose email needs to be changed
-    TODO: fix link before deployment
   */
   postUpdateEmail(user: User): Observable<any> {
     const { username, email } = user;
-    return this.http.post(`http://localhost:5000/users/email/${username}`, {
+    return this.http.post(`users/email/${username}`, {
       email,
     });
   }
@@ -88,9 +84,8 @@ export class UserService {
   /* 
     DELETE user by username
       - username: the username of the about-to-be deleted user
-    TODO: fix link before deployment
   */
   deleteUser(username: string): Observable<any> {
-    return this.http.delete(`http://localhost:5000/users/${username}`);
+    return this.http.delete(`users/${username}`);
   }
 }

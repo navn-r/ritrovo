@@ -17,7 +17,7 @@ const postRouter = require('./routes/post');
 require("dotenv").config();
 
 const app = express(); // creates express init
-const port = process.env.PORT || 5000; // creates port const
+const port = process.env.PORT || 8080; // creates port const
 
 app.use(cors());
 app.use(express.json()); // since we are using bson/json database (mongo)
