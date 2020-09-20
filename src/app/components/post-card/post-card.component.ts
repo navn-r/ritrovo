@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/app/models/user';
-import {Post} from '../../models/post';
+import { Post } from '../../models/post';
+
 
 @Component({
   selector: 'app-post-card',
@@ -20,6 +21,9 @@ export class PostCardComponent implements OnInit {
   @Output()
   editPostEvent = new EventEmitter();
 
+  @Output()
+  deletePostEvent = new EventEmitter();
+
   ngOnInit(): void {
   }
 
@@ -28,7 +32,7 @@ export class PostCardComponent implements OnInit {
   }
 
   onDeletePost() {
-    console.log("Deleting...");
+    this.deletePostEvent.emit(this.post._id);
   }
 
 }

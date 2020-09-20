@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewPostCardComponent } from './components/new-post-card/new-post-card.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     NgbModule,
     FontAwesomeModule,
     FormsModule,
+    HttpClientModule,
     MarkdownModule.forRoot(),
   ],
   providers: [],

@@ -58,7 +58,7 @@ export class PostService {
   */
   postUpdatePost(post: Post): Observable<any> {
     const { _id, title, body } = post;
-    return this.http.post(`http://localhost:5000/${_id}`, {
+    return this.http.post(`http://localhost:5000/posts/${_id}`, {
       title,
       body,
     });

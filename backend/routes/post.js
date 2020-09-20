@@ -37,7 +37,7 @@ router.route('/:id').post((req, res) => {
     Post.findById(req.params.id).then(post => {
         post.title = req.body.title;
         post.body = req.body.body;
-        post.save().then(() => res.json(`post title updated`)).catch(err => res.json(err));
+        post.save().then(() => res.json(`post updated`)).catch(err => res.json(err));
     })
 });
 

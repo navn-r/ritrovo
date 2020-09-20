@@ -1,32 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../models/user';
-import {Post} from '../../models/post';
+import { User } from '../../models/user';
+import { Post } from '../../models/post';
+import { PostService } from '../../services/post.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(private postService: PostService) {}
 
-  posts: Post[] = [
-    {
-      _id: '5f662c7bd81e6c82685d2720',
-      title: 'The title of the century',
-      author: 'navn',
-      body:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      date: new Date('2020-09-19T16:06:19.752Z'),
-    },
-    {
-      _id: '5f662c7bd81e6c82685d2620',
-      title: 'Alexa play despacito 5',
-      author: 'navn',
-      body:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      date: new Date('2020-09-19T20:04:19.752Z'),
-    },
-  ];
+  posts: Post[];
   users: User[];
 
   // dummy user
@@ -41,9 +25,42 @@ export class DashboardComponent implements OnInit {
 
   post: Post;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllPosts();
+  }
 
-  editPostHandler($event) {
+  getNumPosts(): number {
+    return this.posts.filter(post => post.author === this.user.username).length;
+  }
+
+  editPostHandler($event: Post): void {
     this.post = $event;
+  }
+
+  deletePostHander($event: string): void {
+    this.postService.deletePostById($event).subscribe((res) => {
+      console.log(res);
+      this.getAllPosts();
+    });
+  }
+
+  newPostHandler($event: Post): void {
+    if ($event._id.length)
+      this.postService.postUpdatePost($event).subscribe((res) => {
+        console.log(res);
+        this.getAllPosts();
+      });
+    else
+      this.postService.postNewPost($event).subscribe((res) => {
+        console.log(res);
+        this.getAllPosts();
+      });
+  }
+
+  getAllPosts(): void {
+    this.postService.getAllPosts().subscribe(
+      (posts) => (this.posts = posts.reverse()),
+      (err) => console.log(err)
+    );
   }
 }
