@@ -45,7 +45,7 @@ app.use('/users', userRouter);
 const path = require('path');
 app.use(express.static("../dist/ritrovo"));
 app.get('*', (req, res) => {
-  res.send("../dist/ritrovo/index.html");
+  res.sendFile("../dist/ritrovo/index.html");
 });
 
 
