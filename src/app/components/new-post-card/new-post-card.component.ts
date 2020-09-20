@@ -14,6 +14,9 @@ export class NewPostCardComponent implements OnInit {
   @Input()
   user: User;
 
+  @Input()
+  post: Post;
+
   title: string;
   body: string;
 
@@ -21,18 +24,31 @@ export class NewPostCardComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngOnChanges(): void {
+    if(this.post) {
+      this.title = this.post.title;
+      this.body = this.post.body;
+    }
+  }
+
   onPreviewClick(content): void {
     this.previewPost = {
-      _id: '',
+      _id: this.post ? this.post._id : "",
       title: this.title,
       author: this.user.username,
       body: this.body,
-      date: new Date(Date.now()),
+      date: this.post ? this.post.date : new Date(Date.now()),
     };
     this.modalService.open(content, {
       size: 'lg',
       scrollable: true,
     });
+  }
+
+  onCancelEdit(): void {
+    this.post = null;
+    this.title = "";
+    this.body = "";
   }
 }
 

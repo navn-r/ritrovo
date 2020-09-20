@@ -13,8 +13,9 @@
         <textarea [(ngModel)]="body" class="form-control" id="post-body" placeholder="ex. During a nuclear explosion, there is a certain distance of the radius where all the frozen supermarket pizzas are cooked to perfection."></textarea>
     </div>
     <div class="post-buttons">
-        <button class="btn btn-outline-warning">SUBMIT</button>
-        <button class="btn btn-outline-info" id="preview-btn" [disabled]="!this.title || !this.body" (click)="onPreviewClick(content)">PREVIEW POST</button>
+        <button class="btn btn-outline-warning" [disabled]="!this.title || !this.body">SUBMIT</button>
+        <button class="btn btn-outline-info mr-4" [disabled]="!this.title || !this.body" (click)="onPreviewClick(content)">PREVIEW POST</button>
+        <button *ngIf="this.post" class="btn btn-danger mr-4" (click)="onCancelEdit()">CANCEL EDIT</button>
     </div>
   </div>
 </div>

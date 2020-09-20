@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { User } from 'src/app/models/user';
 import {Post} from '../../models/post';
 
 @Component({
@@ -13,7 +14,21 @@ export class PostCardComponent implements OnInit {
   @Input()
   post: Post;
 
+  @Input()
+  user: User;
+
+  @Output()
+  editPostEvent = new EventEmitter();
+
   ngOnInit(): void {
+  }
+
+  onEditPost() {
+    this.editPostEvent.emit(this.post);
+  }
+
+  onDeletePost() {
+    console.log("Deleting...");
   }
 
 }

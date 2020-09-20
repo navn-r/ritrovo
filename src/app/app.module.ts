@@ -13,7 +13,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewPostCardComponent } from './components/new-post-card/new-post-card.component';
 import { PostCardComponent } from './components/post-card/post-card.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     DashboardComponent,
     PostCardComponent,
     UserDetailsComponent,
-    SearchBarComponent,
     NewPostCardComponent,
   ],
   imports: [

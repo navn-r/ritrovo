@@ -52,25 +52,14 @@ export class PostService {
   }
 
   /* 
-    POST update title
-      - post: post that needs its title updated
-    TODO: fix link before deployment
-  */
-  postUpdateTitle(post: Post): Observable<any> {
-    const { _id, title } = post;
-    return this.http.post(`http://localhost:5000/title/${_id}`, {
-      title,
-    });
-  }
-
-  /* 
-    POST update body
+    POST update post
       - post: post that needs its body updated
     TODO: fix link before deployment
   */
-  postUpdateBody(post: Post): Observable<any> {
-    const { _id, body } = post;
-    return this.http.post(`http://localhost:5000/body/${_id}`, {
+  postUpdatePost(post: Post): Observable<any> {
+    const { _id, title, body } = post;
+    return this.http.post(`http://localhost:5000/${_id}`, {
+      title,
       body,
     });
   }

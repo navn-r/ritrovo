@@ -11,21 +11,21 @@ export class DashboardComponent implements OnInit {
 
   posts: Post[] = [
     {
-    _id: '5f662c7bd81e6c82685d2720',
-    title: 'The title of the century',
-    author: 'navn',
-    body:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    date: new Date('2020-09-19T16:06:19.752Z'),
-  },
-  {
-    _id: '5f662c7bd81e6c82685d2720',
-    title: 'Alexa play despacito 5',
-    author: 'navn',
-    body:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    date: new Date('2020-09-19T20:04:19.752Z'),
-  }
+      _id: '5f662c7bd81e6c82685d2720',
+      title: 'The title of the century',
+      author: 'navn',
+      body:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      date: new Date('2020-09-19T16:06:19.752Z'),
+    },
+    {
+      _id: '5f662c7bd81e6c82685d2620',
+      title: 'Alexa play despacito 5',
+      author: 'navn',
+      body:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      date: new Date('2020-09-19T20:04:19.752Z'),
+    },
   ];
   users: User[];
 
@@ -39,7 +39,11 @@ export class DashboardComponent implements OnInit {
     updatedAt: new Date('2020-09-19T16:00:12.291Z'),
   };
 
-  ngOnInit(): void {
+  post: Post;
 
+  ngOnInit(): void {}
+
+  editPostHandler($event) {
+    this.post = $event;
   }
 }

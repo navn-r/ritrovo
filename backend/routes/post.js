@@ -32,21 +32,15 @@ router.route('/').post((req, res) => {
     newPost.save().then(() => res.json(`post successfully added`)).catch(err => res.json(err));
 });
 
-// POST update title
-router.route('/title/:id').post((req, res) => {
+// POST update post
+router.route('/:id').post((req, res) => {
     Post.findById(req.params.id).then(post => {
         post.title = req.body.title;
+        post.body = req.body.body;
         post.save().then(() => res.json(`post title updated`)).catch(err => res.json(err));
     })
 });
 
-// POST update body
-router.route('/body/:id').post((req, res) => {
-    Post.findById(req.params.id).then(post => {
-        post.body = req.body.body;
-        post.save().then(() => res.json(`post body updated`)).catch(err => res.json(err));
-    })
-});
 
 // DELETE post by id
 router.route('/:id').delete((req, res) => {

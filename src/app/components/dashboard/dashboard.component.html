@@ -7,6 +7,6 @@
 <!-- <app-user-details></app-user-details> -->
 <div class="content">
   <!-- <app-search-bar></app-search-bar> -->
-  <app-new-post-card [user]="user"></app-new-post-card>
-  <app-post-card *ngFor="let post of posts" [post]="post"></app-post-card>
+  <app-new-post-card [post]="post" [user]="user"></app-new-post-card>
+  <app-post-card *ngFor="let post of posts" [post]="post" [user]="user" (editPostEvent)="editPostHandler($event)"></app-post-card>
 </div>
