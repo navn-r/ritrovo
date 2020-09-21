@@ -3,9 +3,16 @@
 
 [![time tracker](https://wakatime.com/badge/github/navn-r/ritrovo.svg)](https://wakatime.com/badge/github/navn-r/ritrovo)
 
-Ritrovo, meaning 'Meeting Place' in Italian, is a MEAN stack social platform, *basically a facebook clone*.   
+Ritrovo, meaning 'meeting place' in Italian, is a social platform. 
 
-**_Work In Progress_**
+In layman's terms, it's **_basically_** :sparkles: **Reddit** :sparkles: but it's just one subreddit and no voting or commenting, *it's that simple*.   
+
+Users can view all posts and create/edit/delete posts of their own, written in **Markdown**, *because plain text is boring*.
+
+Ritrovo was built using:
+- `MongoDB Atlas`, `ExpressJS`, `Angular`, `NodeJS` (**MEAN**)
+- `Heroku` for build and deployment
+- :heart:
 
 -------------------------------------------------------------------------------------------
 
