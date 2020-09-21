@@ -44,10 +44,6 @@ app.use('/users', userRouter);
 
 const path = require('path');
 app.use(express.static("../dist/ritrovo"));
-app.get('*', (req, res) => {
-  res.sendFile("../dist/ritrovo/index.html", { root: __dirname });
-});
-
-
+// app.get("*", (req, res) => {});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

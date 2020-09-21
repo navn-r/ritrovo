@@ -1,5 +1,7 @@
 # Ritrovo
-> At least it's not a to-do app.  
+> At least it's not a to-do app.    
+
+[![time tracker](https://wakatime.com/badge/github/navn-r/ritrovo.svg)](https://wakatime.com/badge/github/navn-r/ritrovo)
 
 Ritrovo, meaning 'Meeting Place' in Italian, is a MEAN stack social platform, *basically a facebook clone*.   
 
