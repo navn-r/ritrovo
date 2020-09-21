@@ -3,12 +3,14 @@
         - express: node js framework for backend
         - cors: for cross-origin stuff
         - mongoose: helps connect to mongoDB atlas
+        - path: used for linking the directories together ?
         - userRouter: route for user
         - postRouter: route for post
 */
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require('path');
 
 const userRouter = require('./routes/user');
 const postRouter = require('./routes/post');
@@ -29,7 +31,7 @@ mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true, // added due to deprecation warning
-});
+}).catch(() => console.log('ruh roh!')); // added due to warning in heroku logs
 
 const connection = mongoose.connection; // mongoose connection const to mongoDB
 
@@ -40,12 +42,19 @@ connection.once("open", () => console.log(`MongoDB now connected`));
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 
-// server connects to port and is now listening
-
-const path = require('path');
+// For the server to know where the static files are located
+// we use `path.join()` to link these strings together since ../ won't work
 app.use(express.static(path.join(__dirname, "..", "dist", "ritrovo")));
+
+// Used by heroku, my local server doesn't need this to run
+// All get requests will get the index.html file sent back
 app.get("*", (req, res) => {
+
+  // sendFile() sends the static file from the server to client
+  // we use `join()` for the same reason as above
   res.sendFile(path.join(__dirname, "..", "dist", "ritrovo", "index.html"));
 });
 
+
+// server connects to port and is now listening
 app.listen(port, () => console.log(`Listening on port ${port}`));
