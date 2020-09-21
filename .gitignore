@@ -12,7 +12,6 @@
 
 # backend
 /backend/node_modules
-/backend/.env
 
 # profiling files
 chrome-profiler-events*.json
