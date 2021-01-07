@@ -30,7 +30,6 @@ Users can view all posts and create/edit/delete posts of their own, written in *
 
 </h5>
 <br />
-<br />
 
 <h5 align="center">
   <img src="docs/screenshots/ritrovo-2.png" />
@@ -40,7 +39,6 @@ Users can view all posts and create/edit/delete posts of their own, written in *
  *Signup Screen (1920x1080)*  
 
 </h5>
-<br />
 <br />
 
 <h5 align="center">
@@ -52,7 +50,6 @@ Users can view all posts and create/edit/delete posts of their own, written in *
 
 </h5>
 <br />
-<br />
 
 <h5 align="center">
   <img src="docs/screenshots/ritrovo-4.png" />
@@ -62,7 +59,6 @@ Users can view all posts and create/edit/delete posts of their own, written in *
  *Dashboard Screen - Bottom (1920x1080)*  
 
 </h5>
-<br />
 <br />
 
 
