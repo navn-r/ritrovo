@@ -1,7 +1,15 @@
 import { Document, Schema, model, Model } from "mongoose";
 import { IUser } from "./user.model";
 
+export interface IPostInput {
+  _id?: IPost['_id'];
+  title: IPost['title'];
+  author: IPost['author'];
+  body: IPost['body'];
+}
+
 export interface IPost extends Document {
+  _id: string;
   title: string;
   author: IUser['_id'];
   body: string;
