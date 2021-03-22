@@ -6,6 +6,10 @@ import { Resolvers } from "./generated-types";
 
 export const resolvers: Resolvers = {
   Query: {
+    isLoggedIn: async (_, __, { user }) => {      
+      return !!user && !!user._id;
+    },
+
     users: async () => {
       await dbConnect();
       return User.find();

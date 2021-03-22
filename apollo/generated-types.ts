@@ -52,6 +52,7 @@ export type Query = {
   __typename?: 'Query';
   users?: Maybe<Array<Maybe<User>>>;
   posts?: Maybe<Array<Maybe<Post>>>;
+  isLoggedIn: Scalars['Boolean'];
   postById?: Maybe<Post>;
   postsByAuthor?: Maybe<Array<Maybe<Post>>>;
 };
@@ -181,8 +182,8 @@ export type ResolversTypes = ResolversObject<{
   PostInput: PostInput;
   PostUpdateInput: PostUpdateInput;
   Query: ResolverTypeWrapper<{}>;
-  Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Mutation: ResolverTypeWrapper<{}>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -195,8 +196,8 @@ export type ResolversParentTypes = ResolversObject<{
   PostInput: PostInput;
   PostUpdateInput: PostUpdateInput;
   Query: {};
-  Mutation: {};
   Boolean: Scalars['Boolean'];
+  Mutation: {};
 }>;
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
@@ -220,6 +221,7 @@ export type PostResolvers<ContextType = any, ParentType extends ResolversParentT
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
   posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>;
+  isLoggedIn?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   postById?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QueryPostByIdArgs, 'id'>>;
   postsByAuthor?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType, RequireFields<QueryPostsByAuthorArgs, 'author'>>;
 }>;

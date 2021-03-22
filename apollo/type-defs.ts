@@ -37,6 +37,7 @@ export const typeDefs = gql`
   type Query {
     users: [User]
     posts: [Post]
+    isLoggedIn: Boolean! 
     postById(id: String!): Post
     postsByAuthor(author: String!): [Post]
   }

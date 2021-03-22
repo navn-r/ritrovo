@@ -1,20 +1,14 @@
-import { gql } from "@apollo/client";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { faAt, faKey } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { IS_LOGGED_IN, LOGIN } from "../apollo/requests";
 import styles from "../styles/Login.module.css";
-import { GetServerSideProps } from "next";
-import { getContext } from "./api/graphql";
-
-const LOGIN = gql`
-  mutation($input: UserInput!) {
-    login(input: $input)
-  }
-`;
 
 const Login: React.FC = () => {
+  const { data, loading } = useQuery(IS_LOGGED_IN);
   const [login] = useMutation(LOGIN);
   const router = useRouter();
 
@@ -27,13 +21,19 @@ const Login: React.FC = () => {
     if (!input._id || !input.password) {
       return;
     }
-    const { data } = await login({ variables: { input } });
-    if (!!data && !!data.login) {
+    const { data: loginData } = await login({ variables: { input } });
+    if (!!loginData && !!loginData.login) {
       router.replace("/");
     }
   };
 
-  return (
+  useEffect(() => {
+    if (!!data && !!data.isLoggedIn) {
+      router.replace("/");
+    }
+  }, [data]);
+
+  return loading ? <code>Loading...</code> : (
     <div className={styles.container}>
       <Head>
         <title>Login | Ritrovo</title>
@@ -75,21 +75,6 @@ const Login: React.FC = () => {
       </main>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const { user } = getContext({req, res});
-  if (!!user) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-      props: {},
-    };
-  } else {
-    return { props: {} };
-  }
 };
 
 export default Login;
