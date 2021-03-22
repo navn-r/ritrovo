@@ -44,7 +44,7 @@ export const resolvers: Resolvers = {
         const accessToken = sign({ _id }, key);
         cookies.set("access-token", accessToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV !== "development",
+          secure: true,
           sameSite: "strict",
           path: "/",
         });

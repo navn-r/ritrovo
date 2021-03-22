@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache } from "@apollo/react-hooks";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const isServer = () => typeof window === "undefined";
 
@@ -10,7 +10,7 @@ const createIsomorphLink = () => {
   } else {
     const { HttpLink } = require("@apollo/client/link/http");
     return new HttpLink({
-      uri: "/api/graphql",
+      uri: location.origin + "/api/graphql",
       credentials: "same-origin",
     });
   }
