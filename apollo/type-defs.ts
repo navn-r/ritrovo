@@ -38,7 +38,7 @@ export const typeDefs = gql`
     users: [User]
     posts: [Post]
     postById(id: String!): Post
-    postsByAuthor(author: String!): [Post]!
+    postsByAuthor(author: String!): [Post]
   }
 
   type Mutation {
