@@ -19,7 +19,7 @@ const verifyToken = (token?: string) => {
 }
 
 export const getContext = ({req, res}: any) => {
-  const cookies = new Cookies(req, res);
+  const cookies = new Cookies(req, res, { secure: true });
   const token = cookies.get('access-token');
   const user = verifyToken(token);
   return { cookies, user };
