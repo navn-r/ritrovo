@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import jwt from 'jsonwebtoken';
 import Cookies from 'cookies';
 
-dotenv.config({ path: ".env.local" });
+dotenv.config();
 
 const verifyToken = (token?: string) => {
   if (!token) {

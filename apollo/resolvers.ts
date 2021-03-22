@@ -123,4 +123,4 @@ const PostResolvers = {
 export const resolvers = {
   Query: { ...UserResolvers.Query, ...PostResolvers.Query },
   Mutation: { ...UserResolvers.Mutation, ...PostResolvers.Mutation },
-};
+} as any;
