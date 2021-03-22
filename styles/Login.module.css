@@ -115,3 +115,32 @@
 		background-position: 0% 50%;
 	}
 }
+
+@media(max-width: 900px) {
+  .main {
+    flex-direction: column;
+    row-gap: 3rem;
+    width: 80%;
+    height: max-content;
+  }
+
+  .left {
+    widtH: 100%;
+  }
+
+  .left h1 {
+    font-size: 3rem;
+    margin-bottom: -0.75rem;
+  }
+
+  .left h3 {
+    font-size: 1.25rem;
+    padding-left: 0.125rem;
+  }
+}
+
+@media(max-width: 600px) {
+  .main {
+    padding: 2rem;
+  }
+}
