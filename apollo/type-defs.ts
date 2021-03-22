@@ -47,5 +47,6 @@ export const typeDefs = gql`
     post(input: PostInput!): Post
     updatePost(input: PostUpdateInput!): Post
     deletePost(_id: ID!): Post
+    logout: Boolean
   }
 `;

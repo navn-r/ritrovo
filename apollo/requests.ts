@@ -24,3 +24,9 @@ export const POSTS = gql`
     }
   }
 `;
+
+export const LOGOUT = gql`
+  mutation {
+    logout
+  }
+`;

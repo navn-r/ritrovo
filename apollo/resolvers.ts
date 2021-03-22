@@ -4,9 +4,16 @@ import Post from "../database/post.model";
 import User from "../database/user.model";
 import { Resolvers } from "./generated-types";
 
+const COOKIE_CONFIG = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "strict",
+  path: "/",
+};
+
 export const resolvers: Resolvers = {
   Query: {
-    isLoggedIn: async (_, __, { user }) => {      
+    isLoggedIn: async (_, __, { user }) => {
       return !!user && !!user._id;
     },
 
@@ -39,19 +46,14 @@ export const resolvers: Resolvers = {
       return Post.find({ author });
     },
   },
-  
+
   Mutation: {
     login: async (_, { input: { _id, password } }, { cookies }) => {
       await dbConnect();
       const generateTokens = () => {
         const key = process.env.SECRET_KEY ?? "ritrovo";
         const accessToken = sign({ _id }, key);
-        cookies.set("access-token", accessToken, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
-          path: "/",
-        });
+        cookies.set("access-token", accessToken, COOKIE_CONFIG);
         return accessToken;
       };
 
@@ -65,6 +67,13 @@ export const resolvers: Resolvers = {
       user = new User({ _id, password });
       await user.save();
       return generateTokens();
+    },
+
+    logout: async (_, __, { cookies, user }) => {
+      if (!!user) {
+        cookies.set("access-token", "", { ...COOKIE_CONFIG, maxAge: -1 });
+      }
+      return true;
     },
 
     post: async (_, { input }, { user }) => {

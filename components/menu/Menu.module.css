@@ -6,7 +6,7 @@
   user-select: none;
   max-width: 15rem;
   display: grid;
-  grid-template-rows: 8rem auto 3rem;
+  grid-template-rows: 8rem auto auto 3rem;
   box-shadow: 0 0.3px 5.3px rgba(0, 0, 0, 0.02),
     0 1.1px 17.9px rgba(0, 0, 0, 0.03), 0 5px 80px rgba(0, 0, 0, 0.05);
 }
@@ -61,4 +61,21 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+
+.button {
+  height: 3rem;
+  font-size: 1.5rem;
+  padding: 0;
+  outline: none;
+  border: 0;
+  background-color: var(--black);
+  color: red;
+  letter-spacing: 2px;
+  width: 90%;
+  margin: auto auto 2rem auto;
+  font-family: "Gilroy_regular";
+  font-weight: 700;
+  cursor: pointer;
 }
