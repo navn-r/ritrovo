@@ -1,7 +1,7 @@
 import { connection, connect } from "mongoose";
 
 connection.on("open", () =>
-  console.log(`[${new Date().toISOString}] MongoDB - Connection Established`)
+  console.log(`[${new Date().toISOString()}] MongoDB - Connection Established`)
 );
 
 const dbConnect = async () => {

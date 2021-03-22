@@ -1,6 +1,7 @@
+import { sign } from "jsonwebtoken";
 import dbConnect from "../database";
 import Post, { IPostInput } from "../database/post.model";
-import User from "../database/user.model";
+import User, { IUserInput } from "../database/user.model";
 
 const UserResolvers = {
   Query: {
@@ -10,7 +11,31 @@ const UserResolvers = {
     },
   },
 
-  Mutation: {},
+  Mutation: {
+    login: async ( _: any, { input: { _id, password } }: { input: IUserInput }) => {
+      await dbConnect();
+      // FIXME
+      const generateTokens = () => {
+        const key = process.env.SECRET_KEY ?? "ritrovo";
+        const accessToken = sign({ _id }, key);
+        // const refreshToken = sign({ _id }, key);
+        // res.cookie("access-token", accessToken);
+        // res.cookie("refresh-token", refreshToken);
+        return accessToken;
+      };
+
+      let user = await User.findById(_id);
+
+      if (!!user) {
+        const valid = await user.comparePassword(password);
+        return valid ? generateTokens() : null;
+      }
+
+      user = new User({ _id, password });
+      await user.save();
+      return generateTokens();
+    },
+  },
 };
 
 const PostResolvers = {
@@ -38,7 +63,10 @@ const PostResolvers = {
       return newPost.save();
     },
 
-    updatePost: async (_: any, { input: { _id, title, body } }: { input: IPostInput }) => {
+    updatePost: async (
+      _: any,
+      { input: { _id, title, body } }: { input: IPostInput }
+    ) => {
       await dbConnect();
       return Post.findByIdAndUpdate(_id!, { title, body }, { new: true });
     },

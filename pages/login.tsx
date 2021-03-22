@@ -1,20 +1,34 @@
+import { gql } from "@apollo/client";
+import { useMutation } from "@apollo/react-hooks";
 import { faAt, faKey } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "../styles/Login.module.css";
 
+const LOGIN = gql`
+  mutation($input: UserInput!) {
+    login(input: $input)
+  }
+`;
+
 const Login: React.FC = () => {
-  const onFormSubmit = (target: any) => {
+  const [login, { data }] = useMutation(LOGIN);
+  const router = useRouter();
+
+  const onFormSubmit = async (target: any) => {
     const formData = new FormData(target);
-    const input: Record<string, string | null> = {};
-    ["username", "password"].forEach(
-      (i) => (input[i] = formData.get(i) as string | null)
-    );
-    if(Object.values(input).some(i => !i)) {
+    const input: Record<string, string | null> = {
+      _id: formData.get("username") as string | null,
+      password: formData.get("password") as string | null,
+    };
+    if (!input._id || !input.password) {
       return;
     }
-
-    console.log(input);
+    await login({ variables: { input } });
+    if (typeof window !== "undefined" && !!data && !!data.login) {
+      router.replace("/");
+    }
   };
 
   return (
@@ -36,11 +50,21 @@ const Login: React.FC = () => {
             }}
           >
             <div>
-              <FontAwesomeIcon height="25" width="25" icon={faAt} color="var(--blue)"/>
+              <FontAwesomeIcon
+                height="25"
+                width="25"
+                icon={faAt}
+                color="var(--blue)"
+              />
               <input type="text" name="username" placeholder="username" />
             </div>
             <div>
-              <FontAwesomeIcon height="25" width="25" icon={faKey} color="var(--blue)"/>
+              <FontAwesomeIcon
+                height="25"
+                width="25"
+                icon={faKey}
+                color="var(--blue)"
+              />
               <input type="password" name="password" placeholder="password" />
             </div>
             <input type="submit" value="Login / Signup" />

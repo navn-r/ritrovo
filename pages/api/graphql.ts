@@ -1,10 +1,13 @@
 import { ApolloServer } from "apollo-server-micro";
 import { schema } from "../../apollo/schema";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-dotenv.config({ path: '.env.local' });
+dotenv.config({ path: ".env.local" });
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({
+  schema,
+  context: ({ req, res }: any) => ({ req, res }),
+});
 
 export const config = {
   api: {

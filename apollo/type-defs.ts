@@ -17,6 +17,11 @@ export const typeDefs = gql`
     updatedAt: String
   }
 
+  input UserInput {
+    _id: String!
+    password: String!
+  }
+
   input PostInput {
     title: String!
     author: String!
@@ -30,13 +35,14 @@ export const typeDefs = gql`
   }
 
   type Query {
-    posts: [Post]
+    users: [User]!
+    posts: [Post]!
     postById(id: String!): Post
-    postsByAuthor(author: String!): [Post]
-    users: [User]
+    postsByAuthor(author: String!): [Post]!
   }
 
   type Mutation {
+    login(input: UserInput!): String
     post(input: PostInput!): Post
     updatePost(input: PostUpdateInput!): Post
     deletePost(_id: ID!): Post

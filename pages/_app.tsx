@@ -1,4 +1,4 @@
-import { ApolloProvider } from "@apollo/client";
+import { ApolloProvider } from "@apollo/react-hooks";
 import { createClient } from "../apollo/client";
 import "../styles/globals.css";
 
