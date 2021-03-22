@@ -11,3 +11,16 @@ export const LOGIN = gql`
     login(input: $input)
   }
 `;
+
+export const POSTS = gql`
+  query {
+    posts {
+      _id
+      title
+      author
+      body
+      createdAt
+      updatedAt
+    }
+  }
+`;
