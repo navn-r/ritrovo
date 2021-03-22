@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "../styles/Login.module.css";
+import { GetServerSideProps } from "next";
+import { getContext } from "./api/graphql";
 
 const LOGIN = gql`
   mutation($input: UserInput!) {
@@ -13,7 +15,7 @@ const LOGIN = gql`
 `;
 
 const Login: React.FC = () => {
-  const [login, { data }] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN);
   const router = useRouter();
 
   const onFormSubmit = async (target: any) => {
@@ -25,8 +27,8 @@ const Login: React.FC = () => {
     if (!input._id || !input.password) {
       return;
     }
-    await login({ variables: { input } });
-    if (typeof window !== "undefined" && !!data && !!data.login) {
+    const { data } = await login({ variables: { input } });
+    if (!!data && !!data.login) {
       router.replace("/");
     }
   };
@@ -73,6 +75,21 @@ const Login: React.FC = () => {
       </main>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const { user } = getContext({req, res});
+  if (!!user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+      props: {},
+    };
+  } else {
+    return { props: {} };
+  }
 };
 
 export default Login;
