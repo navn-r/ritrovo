@@ -3,15 +3,26 @@ import { faHandSpock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { Post } from "../apollo/generated-types";
 import { POSTS } from "../apollo/requests";
 import Menu from "../components/menu/Menu";
+import PostCard from "../components/post-card/PostCard";
 import styles from "../styles/Home.module.css";
 import { getContext } from "./api/graphql";
 
+const GREETINGS: string[] = [
+  "Hi,",
+  "Howdy,",
+  "Hola,",
+  "What's poppin?",
+  "How do you do?"
+];
+
 interface HomeProps {
   user: string;
+  greeting: string;
 }
-const Home: React.FC<HomeProps> = ({ user }) => {
+const Home: React.FC<HomeProps> = ({ user, greeting }) => {
   const { data, loading } = useQuery(POSTS);
   return (
     <div className={styles.container}>
@@ -21,8 +32,19 @@ const Home: React.FC<HomeProps> = ({ user }) => {
       </Head>
       <Menu></Menu>
       <main className={styles.main}>
-        <h1 className={styles.title}>Hi, @{user} <FontAwesomeIcon icon={faHandSpock} color="yellow"></FontAwesomeIcon></h1>
-        {!loading && <pre>{JSON.stringify(data ?? [])}</pre>}
+        <h1 className={styles.title}>
+          {greeting} @{user}{" "}
+          <FontAwesomeIcon icon={faHandSpock} color="yellow"></FontAwesomeIcon>
+        </h1>
+        <div className={styles.postContainer}>
+          {loading ? (
+            <code>Loading...</code>
+          ) : (
+            data.posts.map((post: Post) => (
+              <PostCard key={post._id} post={post} />
+            ))
+          )}
+        </div>
       </main>
     </div>
   );
@@ -40,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     };
   } else {
     const props = {
+      greeting: GREETINGS[Math.floor(Math.random() * GREETINGS.length)],
       user:
         typeof user === "object"
           ? (user as any)._id

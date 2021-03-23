@@ -27,7 +27,7 @@ export const resolvers: Resolvers = {
         return null;
       }
       await dbConnect();
-      return Post.find();
+      return Post.find().sort({'updatedAt': -1});
     },
 
     postById: async (_, { id }, { user }) => {
@@ -77,9 +77,9 @@ export const resolvers: Resolvers = {
     },
 
     post: async (_, { input }, { user }) => {
-      if (!user) {
-        return null;
-      }
+      // if (!user) {
+      //   return null;
+      // }
       await dbConnect();
       const newPost = new Post(input);
       return newPost.save();

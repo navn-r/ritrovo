@@ -19,7 +19,6 @@ export const POSTS = gql`
       title
       author
       body
-      createdAt
       updatedAt
     }
   }

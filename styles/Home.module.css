@@ -4,7 +4,7 @@
 }
 
 .main {
-  padding-top: 2rem;
+  padding: 2rem 0 1rem 0;
 }
 
 .title {
@@ -12,5 +12,13 @@
 }
 
 .title svg {
-  height: 2rem;
+  height: 3rem;
+  transform: rotate(-22.5deg);
+}
+
+.postContainer {
+  display: grid;
+  grid-template-columns: auto;
+  margin-top: 2rem;
+  row-gap: 3rem;
 }

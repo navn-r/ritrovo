@@ -1,10 +1,12 @@
 .menu {
   background-color: var(--black);
-  min-height: calc(100vh - 2rem);
+  height: calc(100vh - 2rem);
   margin: 1rem;
   border-radius: 2rem;
   user-select: none;
   max-width: 15rem;
+  position: sticky;
+  top: 1rem;
   display: grid;
   grid-template-rows: 8rem auto auto 3rem;
   box-shadow: 0 0.3px 5.3px rgba(0, 0, 0, 0.02),
@@ -35,17 +37,9 @@
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   align-items: center;
-  background: #0099f7; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #f11712,
-    #0099f7
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #f11712,
-    #0099f7
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #833ab4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
   font-family: "Gilroy_semibold";
   background-size: 200% 200%;
   animation: gradient 10s ease infinite;
