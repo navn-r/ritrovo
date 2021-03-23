@@ -1,6 +1,9 @@
 .container {
   display: grid;
   grid-template-columns: 20rem auto;
+  width: max-content;
+  column-gap: 3rem;
+  margin: 0 auto;
 }
 
 .main {

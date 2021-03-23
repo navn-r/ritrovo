@@ -1,5 +1,5 @@
 .container {
-  width: 60rem;
+  width: 50rem;
   min-height: 15rem;
   background-color: var(--black);
   border-radius: 2rem;
@@ -42,4 +42,16 @@
 
 .container a {
   color: var(--lilac);
+}
+
+@media(min-width: 1920px) {
+  .container {
+    width: 60rem;
+  }
+}
+
+@media(max-width: 1200px) {
+  .container {
+    width: 40rem;
+  }
 }
