@@ -7,6 +7,7 @@ import { Post } from "../apollo/generated-types";
 import { POSTS } from "../apollo/requests";
 import Menu from "../components/menu/Menu";
 import PostCard from "../components/post-card/PostCard";
+import Spinner from "../components/spinner/Spinner";
 import styles from "../styles/Home.module.css";
 import { getContext } from "./api/graphql";
 
@@ -36,9 +37,9 @@ const Home: React.FC<HomeProps> = ({ user, greeting }) => {
           {greeting} @{user}{" "}
           <FontAwesomeIcon icon={faHandSpock} color="yellow"></FontAwesomeIcon>
         </h1>
-        <div className={styles.postContainer}>
+        <div className={loading ? styles.loading : styles.postContainer}>
           {loading ? (
-            <code>Loading...</code>
+            <Spinner className={styles.spinner} />
           ) : (
             data.posts.map((post: Post) => (
               <PostCard key={post._id} post={post} />

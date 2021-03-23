@@ -144,3 +144,9 @@
     padding: 2rem;
   }
 }
+
+.spinner {
+  width: 10rem;
+  height: 10rem;
+  filter: hue-rotate(180deg);
+}

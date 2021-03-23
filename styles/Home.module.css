@@ -25,3 +25,30 @@
   margin-top: 2rem;
   row-gap: 3rem;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 10rem);
+  padding-right: 5rem;
+  width: 45rem;
+}
+
+.spinner {
+  height: 7.5rem;
+  width: 7.5rem;
+}
+
+
+@media(min-width: 1920px) {
+  .loading {
+    width: 60rem;
+  }
+}
+
+@media(max-width: 1200px) {
+  .loading {
+    width: 40rem;
+  }
+}

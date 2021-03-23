@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { IS_LOGGED_IN, LOGIN } from "../apollo/requests";
+import Spinner from "../components/spinner/Spinner";
 import styles from "../styles/Login.module.css";
 
 const Login: React.FC = () => {
@@ -33,46 +34,50 @@ const Login: React.FC = () => {
     }
   }, [data]);
 
-  return loading ? <code>Loading...</code> : (
+  return (
     <div className={styles.container}>
       <Head>
         <title>Login | Ritrovo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.left}>
-          <h1>Ritrovo</h1>
-          <h3>your meeting place</h3>
-        </div>
-        <div className={styles.right}>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              onFormSubmit(e.target);
-            }}
-          >
-            <div>
-              <FontAwesomeIcon
-                height="25"
-                width="25"
-                icon={faAt}
-                color="var(--blue)"
-              />
-              <input type="text" name="username" placeholder="username" />
-            </div>
-            <div>
-              <FontAwesomeIcon
-                height="25"
-                width="25"
-                icon={faKey}
-                color="var(--blue)"
-              />
-              <input type="password" name="password" placeholder="password" />
-            </div>
-            <input type="submit" value="Login / Signup" />
-          </form>
-        </div>
-      </main>
+      {loading ? (
+        <Spinner className={styles.spinner} />
+      ) : (
+        <main className={styles.main}>
+          <div className={styles.left}>
+            <h1>Ritrovo</h1>
+            <h3>your meeting place</h3>
+          </div>
+          <div className={styles.right}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                onFormSubmit(e.target);
+              }}
+            >
+              <div>
+                <FontAwesomeIcon
+                  height="25"
+                  width="25"
+                  icon={faAt}
+                  color="var(--blue)"
+                />
+                <input type="text" name="username" placeholder="username" />
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  height="25"
+                  width="25"
+                  icon={faKey}
+                  color="var(--blue)"
+                />
+                <input type="password" name="password" placeholder="password" />
+              </div>
+              <input type="submit" value="Login / Signup" />
+            </form>
+          </div>
+        </main>
+      )}
     </div>
   );
 };
