@@ -52,7 +52,7 @@
   border-radius: 2rem;
   min-height: 20rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -61,6 +61,7 @@
   width: 75%;
   row-gap: 1rem;
   grid-template-columns: auto;
+  margin-top: 30%;
 }
 
 .right form div {
@@ -104,6 +105,21 @@
   animation: gradient 10s ease infinite;
 }
 
+.error {
+  height: 2rem;
+  margin-top: 2rem;
+  color: #f00;
+  font-size: 1.0625rem;
+  font-family: "Gilroy_regular";
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.error span:first-child {
+  font-family: "Gilroy_bold";
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -136,6 +152,10 @@
   .left h3 {
     font-size: 1.25rem;
     padding-left: 0.125rem;
+  }
+
+  .right form {
+    margin-top: 10%;
   }
 }
 

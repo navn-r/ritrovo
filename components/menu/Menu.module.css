@@ -65,7 +65,7 @@
   outline: none;
   border: 0;
   background-color: var(--black);
-  color: red;
+  color: #f00;
   letter-spacing: 2px;
   width: 90%;
   margin: auto auto 2rem auto;
