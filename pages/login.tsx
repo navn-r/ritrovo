@@ -68,7 +68,7 @@ const Login: React.FC = () => {
                   icon={faAt}
                   color="var(--blue)"
                 />
-                <input type="text" name="username" placeholder="username" />
+                <input type="text" name="username" placeholder="username"/>
               </div>
               <div>
                 <FontAwesomeIcon

@@ -1,10 +1,10 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { faHandSpock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { Post } from "../apollo/generated-types";
-import { POSTS } from "../apollo/requests";
+import { Post, PostUpdateInput } from "../apollo/generated-types";
+import { DELETE_POST, POSTS, UPDATE_POST } from "../apollo/requests";
 import Menu from "../components/menu/Menu";
 import PostCard from "../components/post-card/PostCard";
 import Spinner from "../components/spinner/Spinner";
@@ -16,7 +16,7 @@ const GREETINGS: string[] = [
   "Howdy,",
   "Hola,",
   "What's poppin?",
-  "How do you do?"
+  "How do you do?",
 ];
 
 interface HomeProps {
@@ -24,7 +24,16 @@ interface HomeProps {
   greeting: string;
 }
 const Home: React.FC<HomeProps> = ({ user, greeting }) => {
-  const { data, loading } = useQuery(POSTS);
+  const { data, loading, refetch } = useQuery(POSTS);
+  const [updatePost] = useMutation(UPDATE_POST);
+  const [deletePost] = useMutation(DELETE_POST);
+
+  const onDelete = async (_id: string) =>
+    deletePost({ variables: { input: { _id } } }).then(() => refetch());
+
+  const onEdit = async (edit: PostUpdateInput) =>
+    updatePost({ variables: { input: edit } }).then(() => refetch());
+
   return (
     <div className={styles.container}>
       <Head>
@@ -42,7 +51,13 @@ const Home: React.FC<HomeProps> = ({ user, greeting }) => {
             <Spinner className={styles.spinner} />
           ) : (
             data.posts.map((post: Post) => (
-              <PostCard key={post._id} post={post} />
+              <PostCard
+                key={post._id}
+                post={post}
+                canEdit={post.author === user}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
             ))
           )}
         </div>

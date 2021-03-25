@@ -19,6 +19,7 @@ export const POSTS = gql`
       title
       author
       body
+      createdAt
       updatedAt
     }
   }
@@ -27,5 +28,21 @@ export const POSTS = gql`
 export const LOGOUT = gql`
   mutation {
     logout
+  }
+`;
+
+export const UPDATE_POST = gql`
+  mutation($input: PostUpdateInput!) {
+    updatePost(input: $input) {
+      _id
+    }
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation ($input: PostDeleteInput!) {
+    deletePost(input: $input) {
+      _id
+    }
   }
 `;

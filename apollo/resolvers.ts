@@ -27,7 +27,7 @@ export const resolvers: Resolvers = {
         return null;
       }
       await dbConnect();
-      return Post.find().sort({'updatedAt': -1});
+      return Post.find().sort({'createdAt': -1});
     },
 
     postById: async (_, { id }, { user }) => {
@@ -77,9 +77,9 @@ export const resolvers: Resolvers = {
     },
 
     post: async (_, { input }, { user }) => {
-      // if (!user) {
-      //   return null;
-      // }
+      if (!user) {
+        return null;
+      }
       await dbConnect();
       const newPost = new Post(input);
       return newPost.save();
@@ -93,7 +93,7 @@ export const resolvers: Resolvers = {
       return Post.findByIdAndUpdate(_id!, { title, body }, { new: true });
     },
 
-    deletePost: async (_, { _id }, { user }) => {
+    deletePost: async (_, { input: { _id } }, { user }) => {
       if (!user) {
         return null;
       }

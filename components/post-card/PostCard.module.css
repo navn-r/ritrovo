@@ -1,6 +1,7 @@
 .container {
   width: 50rem;
   min-height: 15rem;
+  height: max-content;
   background-color: var(--black);
   border-radius: 2rem;
   padding: 2rem;
@@ -11,10 +12,33 @@
 ;
 }
 
+.container div:first-child {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.container div:first-child svg {
+  cursor: pointer;
+}
+
 
 .title {
   font-weight: 400;
   font-size: 2.25rem;
+  background-color: var(--black);
+  color: white;
+  outline: 0;
+  border: none;
+  font-family: "Gilroy_regular";
+  font-weight: 200;
+  width: 100%;
+}
+
+.title:not(:read-only){
+  background-color: #1a1a1a;
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: 1rem;
 }
 
 .postInfo {
@@ -42,6 +66,27 @@
 
 .container a {
   color: var(--lilac);
+}
+
+.text {
+  width: 100%;
+  min-height: 5rem;
+  height: 10rem;
+  background-color: #1a1a1a;
+  border: 0;
+  border-radius: 1rem;
+  border-bottom-right-radius: 0;
+  font-size: 1rem;
+  resize: vertical;
+  color: #fff;
+}
+
+.text:focus-visible {
+  outline: 0.125px solid var(--tan);
+}
+
+.updated {
+  color: #fff !important;
 }
 
 @media(min-width: 1920px) {

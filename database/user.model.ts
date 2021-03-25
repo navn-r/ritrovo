@@ -49,9 +49,9 @@ UserSchema.pre("save", function (next) {
 let User: Model<IUser>;
 
 try {
-  User = model<IUser>("User", UserSchema);
+  User = model<IUser>("EUser", UserSchema);
 } catch (e) {
-  User = model("User");
+  User = model("EUser");
 }
 
 export default User;

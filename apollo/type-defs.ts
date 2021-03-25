@@ -34,6 +34,10 @@ export const typeDefs = gql`
     body: String!
   }
 
+  input PostDeleteInput {
+    _id: ID!
+  }
+
   type Query {
     users: [User]
     posts: [Post]
@@ -46,7 +50,7 @@ export const typeDefs = gql`
     login(input: UserInput!): String
     post(input: PostInput!): Post
     updatePost(input: PostUpdateInput!): Post
-    deletePost(_id: ID!): Post
+    deletePost(input: PostDeleteInput!): Post
     logout: Boolean
   }
 `;

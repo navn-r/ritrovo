@@ -48,6 +48,10 @@ export type PostUpdateInput = {
   body: Scalars['String'];
 };
 
+export type PostDeleteInput = {
+  _id: Scalars['ID'];
+};
+
 export type Query = {
   __typename?: 'Query';
   users?: Maybe<Array<Maybe<User>>>;
@@ -93,7 +97,7 @@ export type MutationUpdatePostArgs = {
 
 
 export type MutationDeletePostArgs = {
-  _id: Scalars['ID'];
+  input: PostDeleteInput;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -182,6 +186,7 @@ export type ResolversTypes = ResolversObject<{
   UserInput: UserInput;
   PostInput: PostInput;
   PostUpdateInput: PostUpdateInput;
+  PostDeleteInput: PostDeleteInput;
   Query: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -196,6 +201,7 @@ export type ResolversParentTypes = ResolversObject<{
   UserInput: UserInput;
   PostInput: PostInput;
   PostUpdateInput: PostUpdateInput;
+  PostDeleteInput: PostDeleteInput;
   Query: {};
   Boolean: Scalars['Boolean'];
   Mutation: {};
@@ -231,7 +237,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   login?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
   post?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationPostArgs, 'input'>>;
   updatePost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationUpdatePostArgs, 'input'>>;
-  deletePost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationDeletePostArgs, '_id'>>;
+  deletePost?: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<MutationDeletePostArgs, 'input'>>;
   logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 }>;
 
