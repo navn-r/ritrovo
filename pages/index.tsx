@@ -1,14 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { faHandSpock } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faHandSpock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Post, PostUpdateInput } from "../apollo/generated-types";
 import { DELETE_POST, POSTS, UPDATE_POST } from "../apollo/requests";
 import Menu from "../components/menu/Menu";
+import NewPost from "../components/new-post/NewPost";
 import PostCard from "../components/post-card/PostCard";
 import Spinner from "../components/spinner/Spinner";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Dashboard.module.css";
 import { getContext } from "./api/graphql";
 
 const GREETINGS: string[] = [
@@ -19,11 +20,11 @@ const GREETINGS: string[] = [
   "How do you do?",
 ];
 
-interface HomeProps {
+interface DashboardProps {
   user: string;
   greeting: string;
 }
-const Home: React.FC<HomeProps> = ({ user, greeting }) => {
+const Dashboard: React.FC<DashboardProps> = ({ user, greeting }) => {
   const { data, loading, refetch } = useQuery(POSTS);
   const [updatePost] = useMutation(UPDATE_POST);
   const [deletePost] = useMutation(DELETE_POST);
@@ -34,18 +35,30 @@ const Home: React.FC<HomeProps> = ({ user, greeting }) => {
   const onEdit = async (edit: PostUpdateInput) =>
     updatePost({ variables: { input: edit } }).then(() => refetch());
 
+  const onSubmit = async () => Promise.resolve();
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Dashboard | Ritrovo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Menu></Menu>
+      <Menu />
       <main className={styles.main}>
         <h1 className={styles.title}>
           {greeting} @{user}{" "}
           <FontAwesomeIcon icon={faHandSpock} color="yellow"></FontAwesomeIcon>
         </h1>
+        <NewPost onSubmit={onSubmit} />
+        <div className={styles.divider}>
+          <div></div>
+          <FontAwesomeIcon
+            width="3rem"
+            color="var(--lilac)"
+            icon={faChevronDown}
+          ></FontAwesomeIcon>{" "}
+          <div></div>{" "}
+        </div>
         <div className={loading ? styles.loading : styles.postContainer}>
           {loading ? (
             <Spinner className={styles.spinner} />
@@ -91,4 +104,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   }
 };
 
-export default Home;
+export default Dashboard;
