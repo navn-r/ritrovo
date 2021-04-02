@@ -49,7 +49,7 @@ UserSchema.pre("save", function (next) {
 let User: Model<IUser>;
 
 try {
-  User = model<IUser>("EUser", UserSchema);
+  User = model<IUser>("User", UserSchema);
 } catch (e) {
   User = model("EUser");
 }
