@@ -81,8 +81,12 @@
   color: #fff;
 }
 
+.text:not(:read-only) {
+  padding: 1rem;
+}
+
 .text:focus-visible {
-  outline: 0.125px solid var(--tan);
+  outline: none;
 }
 
 .updated {

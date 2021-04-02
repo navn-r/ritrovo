@@ -31,6 +31,14 @@ export const LOGOUT = gql`
   }
 `;
 
+export const NEW_POST = gql`
+  mutation($input: PostInput!) {
+    post(input: $input) {
+      _id
+    }
+  }
+`;
+
 export const UPDATE_POST = gql`
   mutation($input: PostUpdateInput!) {
     updatePost(input: $input) {

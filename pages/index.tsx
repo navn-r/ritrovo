@@ -3,8 +3,8 @@ import { faChevronDown, faHandSpock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { Post, PostUpdateInput } from "../apollo/generated-types";
-import { DELETE_POST, POSTS, UPDATE_POST } from "../apollo/requests";
+import { Post, PostInput, PostUpdateInput } from "../apollo/generated-types";
+import { DELETE_POST, NEW_POST, POSTS, UPDATE_POST } from "../apollo/requests";
 import Menu from "../components/menu/Menu";
 import NewPost from "../components/new-post/NewPost";
 import PostCard from "../components/post-card/PostCard";
@@ -26,17 +26,19 @@ interface DashboardProps {
 }
 const Dashboard: React.FC<DashboardProps> = ({ user, greeting }) => {
   const { data, loading, refetch } = useQuery(POSTS);
+  const [newPost] = useMutation(NEW_POST);
   const [updatePost] = useMutation(UPDATE_POST);
   const [deletePost] = useMutation(DELETE_POST);
 
   const onDelete = async (_id: string) =>
     deletePost({ variables: { input: { _id } } }).then(() => refetch());
 
-  const onEdit = async (edit: PostUpdateInput) =>
-    updatePost({ variables: { input: edit } }).then(() => refetch());
+  const onEdit = async (input: PostUpdateInput) =>
+    updatePost({ variables: { input } }).then(() => refetch());
 
-  const onSubmit = async () => Promise.resolve();
-
+  const onSubmit = async (input: PostInput) =>
+    newPost({ variables: { input } }).then(() => refetch());
+    
   return (
     <div className={styles.container}>
       <Head>
@@ -49,7 +51,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, greeting }) => {
           {greeting} @{user}{" "}
           <FontAwesomeIcon icon={faHandSpock} color="yellow"></FontAwesomeIcon>
         </h1>
-        <NewPost onSubmit={onSubmit} />
+        <NewPost user={user} onSubmit={onSubmit} />
         <div className={styles.divider}>
           <div></div>
           <FontAwesomeIcon

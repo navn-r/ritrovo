@@ -1,0 +1,89 @@
+.container {
+  width: 100%;
+  height: max-content;
+  background-color: var(--black);
+  border-radius: 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.3px 1.5px rgba(0, 0, 0, 0.028),
+    0 0.9px 5.1px rgba(0, 0, 0, 0.042), 0 4px 23px rgba(0, 0, 0, 0.07);
+}
+
+.container div:first-child {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.container div div {
+  width: 3rem;
+  cursor: pointer;
+  height: 3rem;
+  margin: auto;
+  border-radius: 50%;
+  background: #a80077; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #66ff00,
+    #a80077
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #66ff00,
+    #a80077
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container div div svg {
+  width: 1.5rem;
+  color: var(--black)
+}
+
+.title {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: white;
+  outline: 0;
+  border: none;
+  font-family: "Gilroy_regular";
+  font-weight: 200;
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: 1rem;
+}
+
+.text {
+  width: 100%;
+  min-height: 5rem;
+  height: 6rem;
+  background-color: #1a1a1a;
+  border: 0;
+  border-radius: 1rem;
+  border-bottom-right-radius: 0;
+  font-size: 1rem;
+  padding: 1rem;
+  resize: vertical;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.text:focus-visible {
+  outline: none;
+}
