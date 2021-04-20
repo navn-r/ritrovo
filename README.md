@@ -1,4 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ritrovo
+> Your meeting place.
+
+[![time tracker](https://wakatime.com/badge/github/navn-r/ritrovo.svg)](https://wakatime.com/badge/github/navn-r/ritrovo)
+
+Ritrovo, meaning 'meeting place' in Italian, is a social platform.
+
+## Features
+
+- Single page, single community based design
+- View all posts by other users
+- Create, edit, and delete posts written in Markdown
+
+## Technology
+
+- Next.js (React)
+- TypeScript
+- GraphQL with Code Generator
+- Apollo Client/Server
+- MongoDB with Mongoose
+- JWT Authentication
+- Vercel
+
+## What I Learned
+
+- Server Side Rendering (Eliminating the split `frontend/backend` design)
+- CSS Modules in React
+- GraphQL (Queries, Mutations, Types, Input, Resolvers)
+- Auto-generating TypeScript, Mongoose and GraphQL Types
+- Authentication with JWT and Cookies
+- Serverless Deployment
+- Semantic Commit Messages with Squashing and Rebasing
 
 ## Getting Started
 
@@ -6,29 +37,32 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The main GraphQL route can be accessed on [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql). In the `apollo` folder, contains all the GraphQL magic (Schema, Resolvers, TypeDefs). 
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Auto Generating Schemas
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The config is located at `codegen.yml`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<h2 align="center"><img src="docs/screenshots/login1080.png"/></h2>
+<h5 align="center">Login 1920x1080</h5>
+<br /><br />
+<h2 align="center"><img src="docs/screenshots/dashboard1080.png"/></h2>
+<h5 align="center">Dashboard (Landing) 1920x1080</h5>
+<br /><br />
+<h2 align="center"><img src="docs/screenshots/dashboard-lower1080.png"/></h2>
+<h5 align="center">Dashboard (Scrolled down) 1920x1080</h5>
+<br /><br />
+<h2 align="center"><img src="docs/screenshots/dashboard-busy1080.png"/></h2>
+<h5 align="center">Dashboard (Creating and Editing Posts) 1920x1080</h5>
