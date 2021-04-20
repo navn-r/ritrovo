@@ -51,7 +51,7 @@ let User: Model<IUser>;
 try {
   User = model<IUser>("User", UserSchema);
 } catch (e) {
-  User = model("EUser");
+  User = model("User");
 }
 
 export default User;
